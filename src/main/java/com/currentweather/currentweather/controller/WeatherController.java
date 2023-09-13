@@ -20,13 +20,18 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
 
-    @GetMapping("/currentWeather")
+    @GetMapping("/weather/current")
     public ResponseEntity<CurrentWeatherResponse> hello(@RequestParam("cityName") String cityName, @RequestParam("countryCode") String countryCode) {
         return ResponseEntity.status(HttpStatus.OK).body(weatherService.findCurrentWeatherByCityAndCountry(cityName, countryCode));
     }
 
-    @GetMapping("/allWeatherRecords")
+    @GetMapping("/weather/records")
     public ResponseEntity<List<WeatherRecord>> allWeatherRecords() {
         return ResponseEntity.status(HttpStatus.OK).body(weatherService.getAllWeatherRecords());
+    }
+
+    @GetMapping("/isAlive")
+    public String isAlive() {
+        return "Weather App is alive, you don't need authentication to check whether I am alive";
     }
 }
