@@ -33,7 +33,7 @@ public class AuthenticationService {
 
     public static Bucket resolveBucket() {
         System.out.println(" Bucket created");
-        Bandwidth limit = Bandwidth.classic(5, Refill.intervally(5, Duration.ofMinutes(1)));
+        Bandwidth limit = Bandwidth.classic(5, Refill.intervally(5, Duration.ofHours(1)));
         return Bucket.builder()
                 .addLimit(limit)
                 .build();
