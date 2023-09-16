@@ -1,9 +1,9 @@
-package com.currentweather.currentweather.service;
+package com.currentweather.service;
 
-import com.currentweather.currentweather.model.CurrentWeatherResponse;
-import com.currentweather.currentweather.model.OpenWeatherMapResponse;
-import com.currentweather.currentweather.model.WeatherRecord;
-import com.currentweather.currentweather.repository.WeatherRepository;
+import com.currentweather.model.CurrentWeatherResponse;
+import com.currentweather.model.OpenWeatherMapResponse;
+import com.currentweather.model.WeatherRecord;
+import com.currentweather.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

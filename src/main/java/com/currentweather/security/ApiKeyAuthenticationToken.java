@@ -1,4 +1,4 @@
-package com.currentweather.currentweather.security;
+package com.currentweather.security;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

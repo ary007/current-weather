@@ -1,4 +1,4 @@
-package com.currentweather.currentweather.model;
+package com.currentweather.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

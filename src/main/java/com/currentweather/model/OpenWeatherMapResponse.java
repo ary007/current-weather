@@ -1,4 +1,4 @@
-package com.currentweather.currentweather.model;
+package com.currentweather.model;
 
 import java.util.Arrays;
 import java.util.Optional;

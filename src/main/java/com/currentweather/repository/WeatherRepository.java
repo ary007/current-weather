@@ -1,6 +1,6 @@
-package com.currentweather.currentweather.repository;
+package com.currentweather.repository;
 
-import com.currentweather.currentweather.model.WeatherRecord;
+import com.currentweather.model.WeatherRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WeatherRepository extends JpaRepository<WeatherRecord, Long> {

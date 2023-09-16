@@ -1,4 +1,4 @@
-package com.currentweather.currentweather.security;
+package com.currentweather.security;
 
 import org.springframework.http.MediaType;
 import jakarta.servlet.FilterChain;

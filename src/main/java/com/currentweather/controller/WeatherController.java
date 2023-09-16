@@ -1,8 +1,8 @@
-package com.currentweather.currentweather.controller;
+package com.currentweather.controller;
 
-import com.currentweather.currentweather.model.CurrentWeatherResponse;
-import com.currentweather.currentweather.model.WeatherRecord;
-import com.currentweather.currentweather.service.WeatherService;
+import com.currentweather.model.CurrentWeatherResponse;
+import com.currentweather.model.WeatherRecord;
+import com.currentweather.service.WeatherService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

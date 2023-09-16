@@ -1,4 +1,4 @@
-package com.currentweather.currentweather;
+package com.currentweather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

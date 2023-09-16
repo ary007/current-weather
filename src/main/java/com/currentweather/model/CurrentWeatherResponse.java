@@ -1,4 +1,4 @@
-package com.currentweather.currentweather.model;
+package com.currentweather.model;
 
 public class CurrentWeatherResponse {
 
