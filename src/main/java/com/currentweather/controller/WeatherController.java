@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,7 +23,17 @@ public class WeatherController {
 
     @GetMapping("/weather/current")
     public ResponseEntity<CurrentWeatherResponse> hello(@RequestParam("cityName") String cityName, @RequestParam("countryCode") String countryCode) {
-        return ResponseEntity.status(HttpStatus.OK).body(weatherService.findCurrentWeatherByCityAndCountry(cityName, countryCode));
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(weatherService.findCurrentWeatherByCityAndCountry(cityName, countryCode));
+        }
+        catch(Exception ex) {
+            if(ex.getMessage().contains("city not found")) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST, "Weather Not Found for %s, %s".formatted(cityName, countryCode));
+            }
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Reason unknown");
+        }
     }
 
     @GetMapping("/weather/records")
