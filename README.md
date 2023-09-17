@@ -67,6 +67,9 @@ Response:
 
 It will start running in port 8080
 
+# How to test
+gradle test
+
 # How to hit the API
 
 ## Test the app is up and running
@@ -97,4 +100,4 @@ The API key has a rate limiter of only 5 request in an hour
 
 ## TODO
 1. Rate limit for 5 API keys
-2. Unit tests
+2. Increase unit test coverage

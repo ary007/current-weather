@@ -1,5 +1,7 @@
 package com.currentweather.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,18 +18,24 @@ import org.springframework.web.filter.GenericFilterBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AuthenticationFilter extends GenericFilterBean {
+import static com.currentweather.security.AuthenticationService.AUTH_TOKEN_HEADER_NAME;
 
+public class AuthenticationFilter extends GenericFilterBean {
+    Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
     RequestMatcher customFilterUrl = new AntPathRequestMatcher("/api/weather/**");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        if (customFilterUrl.matches((HttpServletRequest) request)) {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        if (customFilterUrl.matches(httpServletRequest)) {
             try {
-                Authentication authentication = AuthenticationService.getAuthentication((HttpServletRequest) request);
+                Authentication authentication = AuthenticationService.getAuthentication(httpServletRequest);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (Exception exp) {
+                logger.error("Authentication error for request %s".formatted(httpServletRequest.getRequestURI())
+                             +", with API key %s".formatted(httpServletRequest.getHeader(AUTH_TOKEN_HEADER_NAME))
+                             +". Error message "+ exp.getMessage());
                 HttpServletResponse httpResponse = (HttpServletResponse) response;
                 httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 httpResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);

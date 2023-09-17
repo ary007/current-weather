@@ -30,13 +30,17 @@ public class WeatherService {
         assert response.getWeather().isPresent();
         String weatherDescription = response.getWeather().get().getDescription();
         currentWeatherResponse.setDescription(weatherDescription);
+        storeWeatherRecord(cityName, countryCode, weatherDescription);
+        return currentWeatherResponse;
+    }
+
+    private void storeWeatherRecord(String cityName, String countryCode, String weatherDescription) {
         WeatherRecord weatherRecord = new WeatherRecord();
         weatherRecord.setCityName(cityName);
         weatherRecord.setCountryCode(countryCode);
         weatherRecord.setDescription(weatherDescription);
         weatherRecord.setCreatedDateTime(LocalDateTime.now());
         weatherRepository.save(weatherRecord);
-        return currentWeatherResponse;
     }
 
     public List<WeatherRecord> getAllWeatherRecords() {
